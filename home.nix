@@ -38,8 +38,10 @@
   programs.lf.enable = true;
   programs.neovim.enable = true;
   programs.ripgrep.enable = true;
-  programs.tmux.enable = true;
   programs.vim.enable = true;
+  imports = [
+    ./packages/tmux.nix
+  ];
 
   # Let Home Manager install and manage itself.
   # programs.home-manager.enable = true;
@@ -47,7 +49,9 @@
   home.packages = [
     pkgs.discord
     pkgs.gcc
+    pkgs.catppuccin-gtk
     pkgs.gnome-browser-connector
+    pkgs.gnome.gnome-tweaks
     pkgs.gnome.gnome-keyring
     pkgs.gnome.gnome-themes-extra
     pkgs.pinentry
