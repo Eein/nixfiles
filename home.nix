@@ -34,7 +34,12 @@
   programs.bat.enable = true;
   programs.eza.enable = true;
   programs.firefox.enable = true;
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting
+    '';
+  };
   programs.htop.enable = true;
   programs.lf.enable = true;
   programs.ripgrep.enable = true;
@@ -48,6 +53,7 @@
   # programs.home-manager.enable = true;
 
   home.packages = [
+    pkgs.unzip
     pkgs.discord
     pkgs.gcc
     pkgs.catppuccin-gtk

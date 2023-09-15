@@ -7,6 +7,7 @@
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
+      elixir-tools-nvim
       nvim-treesitter.withAllGrammars
       {
         plugin = lf-vim;
