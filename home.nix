@@ -29,6 +29,7 @@
     enableSshSupport = true;
   };
 
+  programs.home-manager.enable = true;
   programs.alacritty.enable = true;
   programs.bat.enable = true;
   programs.eza.enable = true;
@@ -36,11 +37,11 @@
   programs.fish.enable = true;
   programs.htop.enable = true;
   programs.lf.enable = true;
-  programs.neovim.enable = true;
   programs.ripgrep.enable = true;
   programs.vim.enable = true;
   imports = [
-    ./packages/tmux.nix
+    ./programs/tmux.nix
+    ./programs/neovim.nix
   ];
 
   # Let Home Manager install and manage itself.
