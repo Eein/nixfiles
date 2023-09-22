@@ -8,7 +8,7 @@
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       elixir-tools-nvim
-      nvim-treesitter.withAllGrammars
+      (nvim-treesitter.withPlugins (ps: with ps; [ nix rust ]))
       {
         plugin = lf-vim;
         config = ''
@@ -23,6 +23,8 @@
 	  endif
         '';
       }
+      catppuccin-nvim
+      indent-o-matic
       vim-floaterm
     ];
   };

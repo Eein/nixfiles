@@ -37,6 +37,7 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
+      export PATH="$HOME/.local/share/rtx/shims:$PATH"
       set fish_greeting
     '';
   };
@@ -53,6 +54,7 @@
   # programs.home-manager.enable = true;
 
   home.packages = [
+    pkgs.podman-compose
     pkgs.unzip
     pkgs.discord
     pkgs.gcc
@@ -66,4 +68,14 @@
     pkgs.steam
     pkgs.xclip
   ];
+
+  # dconf settings to make legacy applications respect dark mode
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        gtk-theme = "Adwaita-dark";
+      };
+    };
+  };
 }
