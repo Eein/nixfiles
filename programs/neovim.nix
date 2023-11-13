@@ -8,7 +8,7 @@
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       elixir-tools-nvim
-      (nvim-treesitter.withPlugins (ps: with ps; [ nix rust ]))
+      (nvim-treesitter.withPlugins (ps: with ps; [ nix rust elixir ]))
       {
         plugin = lf-vim;
         config = ''
