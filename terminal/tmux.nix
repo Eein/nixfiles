@@ -14,7 +14,13 @@
 
       set -g history-limit 10000
       set -g default-terminal "tmux-256color"
-      set -ag terminal-overrides ",xterm-256color:RGB"
+      # set -ag terminal-overrides ",xterm-256color:RGB"
+      set-option -sa terminal-overrides ',*256color:Tc'
+      set-option -sa terminal-overrides ',xterm*:Tc'
+      
+
+
+
 
       # reload tmux config with ` + r
       unbind r

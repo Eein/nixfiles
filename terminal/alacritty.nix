@@ -3,6 +3,9 @@
     enable = true;
     settings = {
       font.normal.family = "CaskaydiaCove Nerd Font";
+      env = {
+        "TERM" = "xterm-256color";
+      };
       window = {
         padding = {
           x = 10;
