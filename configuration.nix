@@ -106,7 +106,7 @@
   ];
 
   programs.fish.enable = true;
-
+  fonts.fontconfig.enable = true;
   virtualisation.docker.enable = true; 
 
   # Some programs need SUID wrappers, can be configured further or are

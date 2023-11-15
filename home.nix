@@ -32,7 +32,10 @@
   programs.home-manager.enable = true;
   programs.bat.enable = true;
   programs.eza.enable = true;
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    enableGnomeExtensions = true;
+  };
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -61,13 +64,17 @@
   # programs.home-manager.enable = true;
 
   home.packages = [
-    pkgs.catppuccin-gtk
+    #(pkgs.catppuccin-gtk.override {
+    #  accents = [ "sky" ]; # You can specify multiple accents here to output multiple themes
+    #  size = "standard";
+    #  tweaks = [ "black" ]; # You can also specify multiple tweaks here
+    #  variant = "mocha";
+    #})
     pkgs.discord
     pkgs.docker-compose
     pkgs.gcc
     pkgs.gnome-browser-connector
     pkgs.gnome.gnome-keyring
-    pkgs.gnome.gnome-themes-extra
     pkgs.gnome.gnome-tweaks
     pkgs.magic-wormhole
     pkgs.pinentry
@@ -75,14 +82,44 @@
     pkgs.steam
     pkgs.unzip
     pkgs.xclip
+
+    # Gnome Stuff
+    pkgs.gnomeExtensions.user-themes
+    (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; })
   ];
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Mocha-Standard-Sky-dark";
+      package = (pkgs.catppuccin-gtk.override {
+          accents = [ "sky" ]; # You can specify multiple accents here to output multiple themes
+          size = "standard";
+          tweaks = [ "normal" ]; # You can also specify multiple tweaks here
+          variant = "mocha";
+      });
+    };
+  };
 
   # dconf settings to make legacy applications respect dark mode
   dconf = {
     enable = true;
     settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = [
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
+        ];
+      };
+
       "org/gnome/desktop/interface" = {
-        gtk-theme = "Adwaita-dark";
+        gtk-theme = "Catppuccin-Mocha-Standard-Sky-dark";
+        color-scheme = "prefer-dark";
+        enable-hot-corners = false;
+      };
+
+      "org/gnome/shell/extensions/user-theme" = {
+        name= "Catppuccin-Mocha-Standard-Sky-dark";
       };
     };
   };
