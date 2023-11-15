@@ -16,6 +16,11 @@
   # changes in each release.
   home.stateVersion = "23.05";
 
+  home.sessionVariables = {
+    GTK_THEME = "Catppuccin-Mocha-Standard-Sky-dark";
+    QT_STYLE_OVERRIDE = "Catppuccin-Mocha-Standard-Sky-dark";
+  };
+
   programs.git = {
     enable = true;
     userName = "Eein";
@@ -32,10 +37,6 @@
   programs.home-manager.enable = true;
   programs.bat.enable = true;
   programs.eza.enable = true;
-  programs.firefox = {
-    enable = true;
-    enableGnomeExtensions = true;
-  };
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -72,6 +73,11 @@
     #})
     pkgs.discord
     pkgs.docker-compose
+    (pkgs.firefox.override {
+      cfg = {
+        enableGnomeExtensions = true;
+      };
+    })
     pkgs.gcc
     pkgs.gnome-browser-connector
     pkgs.gnome.gnome-keyring
