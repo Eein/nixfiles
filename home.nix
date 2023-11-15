@@ -23,11 +23,15 @@
 
   programs.git = {
     enable = true;
-    userName = "Eein";
+    userName = "William Volin";
     userEmail = "me@williamvolin.com";
+    signing = {
+      signByDefault = true;
+      key = null;
+    };
   };
 
-
+  programs.gpg.enable = true;
   services.gpg-agent = {                          
     enable = true;
     defaultCacheTtl = 1800;
