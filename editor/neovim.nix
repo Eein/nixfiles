@@ -1,12 +1,23 @@
 # https://gist.github.com/nat-418/d76586da7a5d113ab90578ed56069509 
 { config, pkgs, ... }:
+let
+  vim-buftabline = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-buftabline";
+    src = pkgs.fetchFromGitHub {
+      owner = "ap";
+      repo = "vim-buftabline";
+      rev = "73b9ef5dcb6cdf6488bc88adb382f20bc3e3262a";
+      hash = "sha256-vmznVGpM1QhkXpRHg0mEweolvCA9nAOuALGN5U6dRO8=";
+    };
+  };
+in
 {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter.withAllGrammars)
+      nvim-treesitter.withAllGrammars
       catppuccin-nvim
       nvim-cmp
       cmp-nvim-lsp
@@ -20,7 +31,7 @@
       vim-repeat
       vim-endwise
       vim-commentary
-      # vim-buftabline (this doesnt exist yet)
+      vim-buftabline
       vim-rhubarb
       vim-fugitive
       vim-floaterm
@@ -30,6 +41,7 @@
       vim-visual-multi
       lf-vim
       gitsigns-nvim
+      fzf-vim
     ];
     extraPackages = with pkgs;
     [
@@ -149,12 +161,78 @@
         augroup END
       ]])
 
+      require'nvim-treesitter.configs'.setup {
+        indent = {
+          enable = true
+        },
+        highlight = {
+          enable = true
+        }
+      }
+
+      -- require("elixir").setup({
+      --   nextls = {
+      --     enable = true,
+      --     init_options = {
+      --       mix_env = "dev",
+      --       -- mix_target = "host",
+      --       experimental = {
+      --         completions = {
+      --           enable = true -- control if completions are enabled. defaults to false
+      --         }
+      --       }
+      --     },
+      --   },
+      --   credo = {enable = true},
+      --   elixirls = {enable = false},
+      -- })
+
       require("telescope").setup({
         pickers = {
           find_files = { theme = "dropdown" },
           live_grep = { theme = "dropdown" },
         },
       })
+
+      -- LSP + nvim-cmp setup
+        local lspc = require('lspconfig')
+        lspc.hls.setup {}
+        local cmp = require("cmp")
+        cmp.setup {
+          sources = {
+            { name = "nvim_lsp" },
+            { name = "path" },
+          },
+          formatting = {
+            format = function(entry, vim_item)
+              vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                path = "[Path]",
+              })[entry.source.name]
+              return vim_item
+            end
+          },
+          mapping = {
+            ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+            ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.close(),
+            ['<CR>'] = cmp.mapping.confirm({
+              behavior = cmp.ConfirmBehavior.Replace,
+              select = true,
+            })
+          },
+        }
+
+        local servers = { 'nil_ls' }
+        for _, lsp in ipairs(servers) do
+          require('lspconfig')[lsp].setup {
+            capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+            on_attach = on_attach,
+          }
+        end
       EOF
     '';
   };

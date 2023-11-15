@@ -39,8 +39,10 @@
   programs.eza.enable = true;
   programs.fish = {
     enable = true;
+    shellAliases = {
+      ls = "eza";
+    };
     interactiveShellInit = ''
-      export PATH="$HOME/.local/share/rtx/shims:$PATH"
       set fish_greeting
     '';
   };
@@ -65,14 +67,10 @@
   # programs.home-manager.enable = true;
 
   home.packages = [
-    #(pkgs.catppuccin-gtk.override {
-    #  accents = [ "sky" ]; # You can specify multiple accents here to output multiple themes
-    #  size = "standard";
-    #  tweaks = [ "black" ]; # You can also specify multiple tweaks here
-    #  variant = "mocha";
-    #})
     pkgs.discord
     pkgs.docker-compose
+    # Eventually move this to home-manager profiles
+    # and automatically install extensions
     (pkgs.firefox.override {
       cfg = {
         enableGnomeExtensions = true;
