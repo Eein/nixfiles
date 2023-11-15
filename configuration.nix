@@ -91,7 +91,7 @@
   users.users.will = {
     isNormalUser = true;
     description = "will";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.fish;
   };
 
@@ -107,13 +107,7 @@
 
   programs.fish.enable = true;
 
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
+  virtualisation.docker.enable = true; 
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

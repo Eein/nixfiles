@@ -30,7 +30,6 @@
   };
 
   programs.home-manager.enable = true;
-  programs.alacritty.enable = true;
   programs.bat.enable = true;
   programs.eza.enable = true;
   programs.firefox.enable = true;
@@ -42,30 +41,39 @@
     '';
   };
   programs.htop.enable = true;
-  programs.lf.enable = true;
+  programs.lf = {
+    enable = true;
+    keybindings = {
+      "<enter>" = "open";
+      "sh" = "shell";
+    };
+  };
   programs.ripgrep.enable = true;
   programs.vim.enable = true;
+
   imports = [
-    ./programs/tmux.nix
-    ./programs/neovim.nix
+    ./editor/neovim.nix
+    ./terminal/tmux.nix
+    ./terminal/alacritty.nix
   ];
 
   # Let Home Manager install and manage itself.
   # programs.home-manager.enable = true;
 
   home.packages = [
-    pkgs.podman-compose
-    pkgs.unzip
-    pkgs.discord
-    pkgs.gcc
     pkgs.catppuccin-gtk
+    pkgs.discord
+    pkgs.docker-compose
+    pkgs.gcc
     pkgs.gnome-browser-connector
-    pkgs.gnome.gnome-tweaks
     pkgs.gnome.gnome-keyring
     pkgs.gnome.gnome-themes-extra
+    pkgs.gnome.gnome-tweaks
+    pkgs.magic-wormhole
     pkgs.pinentry
     pkgs.spotify
     pkgs.steam
+    pkgs.unzip
     pkgs.xclip
   ];
 
