@@ -10,6 +10,15 @@ let
       hash = "sha256-vmznVGpM1QhkXpRHg0mEweolvCA9nAOuALGN5U6dRO8=";
     };
   };
+  movedotnvim = pkgs.vimUtils.buildVimPlugin {
+    name = "move.nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "fedepujol";
+      repo = "move.nvim";
+      rev = "d663b74b4e38f257aae757541c9076b8047844d6";
+      hash = "sha256-t1JxAwFZb2IceaVfxgg1JeXYDVmPOFjSr2RMa+BoS1s=";
+    };
+  };
 in
 {
   programs.neovim = {
@@ -35,7 +44,8 @@ in
       vim-rhubarb
       vim-fugitive
       vim-floaterm
-      vim-move
+      # vim-move
+      movedotnvim
       vim-bbye
       telescope-nvim
       vim-visual-multi
@@ -114,12 +124,10 @@ in
       vim.keymap.set("v", "<C-j>", ":MoveBlock(1)<CR>", opts)
       vim.keymap.set("v", "<C-k>", ":MoveBlock(-1)<CR>", opts)
 
-      if vim.fn.executable("rg") == 1 then
-        vim.cmd([[
-          set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-          let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-        ]])
-      end
+      vim.cmd([[
+        set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+        let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+      ]])
 
       vim.cmd([[
         let g:move_key_modifier = 'C'
@@ -170,22 +178,24 @@ in
         }
       }
 
-      -- require("elixir").setup({
-      --   nextls = {
-      --     enable = true,
-      --     init_options = {
-      --       mix_env = "dev",
-      --       -- mix_target = "host",
-      --       experimental = {
-      --         completions = {
-      --           enable = true -- control if completions are enabled. defaults to false
-      --         }
-      --       }
-      --     },
-      --   },
-      --   credo = {enable = true},
-      --   elixirls = {enable = false},
-      -- })
+      require("elixir").setup({
+        nextls = {
+          enable = false,
+          init_options = {
+            mix_env = "dev",
+            -- mix_target = "host",
+            experimental = {
+              completions = {
+                enable = true -- control if completions are enabled. defaults to false
+              }
+            }
+          },
+        },
+        credo = {enable = true},
+        elixirls = {enable = false},
+      })
+
+      require('gitsigns').setup()
 
       require("telescope").setup({
         pickers = {
@@ -194,45 +204,6 @@ in
         },
       })
 
-      -- LSP + nvim-cmp setup
-        local lspc = require('lspconfig')
-        lspc.hls.setup {}
-        local cmp = require("cmp")
-        cmp.setup {
-          sources = {
-            { name = "nvim_lsp" },
-            { name = "path" },
-          },
-          formatting = {
-            format = function(entry, vim_item)
-              vim_item.menu = ({
-                nvim_lsp = "[LSP]",
-                path = "[Path]",
-              })[entry.source.name]
-              return vim_item
-            end
-          },
-          mapping = {
-            ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-            ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.close(),
-            ['<CR>'] = cmp.mapping.confirm({
-              behavior = cmp.ConfirmBehavior.Replace,
-              select = true,
-            })
-          },
-        }
-
-        local servers = { 'nil_ls' }
-        for _, lsp in ipairs(servers) do
-          require('lspconfig')[lsp].setup {
-            capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-            on_attach = on_attach,
-          }
-        end
       EOF
     '';
   };
