@@ -190,7 +190,15 @@ in
       require("elixir").setup({
         nextls = { 
           enable = true,
-          cmd = "/etc/profiles/per-user/will/bin/nextls"
+          cmd = "/etc/profiles/per-user/will/bin/nextls",
+          init_options = {
+            mix_env = "dev",
+            experimental = {
+              completions = {
+                enable = true -- control if completions are enabled. defaults to false
+              }
+            }
+          },
         },
         credo = {enable = false},
         elixirls = {enable = false},
@@ -213,6 +221,11 @@ in
           sources = {
             { name = "nvim_lsp" },
             { name = "path" },
+            { name = 'buffer' },
+          },
+          window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
           },
           formatting = {
             format = function(entry, vim_item)
@@ -237,13 +250,30 @@ in
           },
         }
 
-        local servers = { 'nil_ls' }
-        for _, lsp in ipairs(servers) do
-          require('lspconfig')[lsp].setup {
-            capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-            on_attach = on_attach,
-          }
-        end
+        require('lspconfig')['nil_ls'].setup {
+          capabilities = capabilities
+        }
+
+        -- Map LSP keybindings
+        -- vim.api.nvim_set_keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
+        vim.api.nvim_set_keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
+        vim.api.nvim_set_keymap("n", "<leader>=", ":lua vim.lsp.buf.formatting()<CR>", opts)
+        vim.api.nvim_set_keymap("n", "<leader>ah", ":lua vim.lsp.buf.hover()<CR>", opts)
+
+        -- map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
+        -- map('n','gr','<cmd>lua vim.lsp.buf.references()<CR>')
+        -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
+        -- map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
+        -- map('n','gt','<cmd>lua vim.lsp.buf.type_definition()<CR>')
+        -- map('n','<leader>gw','<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+        -- map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+        -- map('n','<leader>ah','<cmd>lua vim.lsp.buf.hover()<CR>')
+        -- map('n','<leader>af','<cmd>lua vim.lsp.buf.code_action()<CR>')
+        -- map('n','<leader>ee','<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
+        -- map('n','<leader>ar','<cmd>lua vim.lsp.buf.rename()<CR>')
+        -- map('n','<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+        -- map('n','<leader>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
+        -- map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 
       EOF
     '';
