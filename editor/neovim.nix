@@ -1,5 +1,5 @@
 # https://gist.github.com/nat-418/d76586da7a5d113ab90578ed56069509 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   vim-buftabline = pkgs.vimUtils.buildVimPlugin {
     name = "vim-buftabline";
@@ -17,6 +17,15 @@ let
       repo = "move.nvim";
       rev = "d663b74b4e38f257aae757541c9076b8047844d6";
       hash = "sha256-t1JxAwFZb2IceaVfxgg1JeXYDVmPOFjSr2RMa+BoS1s=";
+    };
+  };
+  outputpanel = pkgs.vimUtils.buildVimPlugin {
+    name = "output-panel.nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "mhanberg";
+      repo = "output-panel.nvim";
+      rev = "65bb44a5d5dbd40f3793a8c591b65a0c5f260bd9";
+      hash = "sha256-Gm03u8PidPQ/cNkl6K5rynZiux12lqgv0E5RXItw8nI=";
     };
   };
 in
@@ -44,8 +53,8 @@ in
       vim-rhubarb
       vim-fugitive
       vim-floaterm
-      # vim-move
       movedotnvim
+      outputpanel
       vim-bbye
       telescope-nvim
       vim-visual-multi
@@ -183,12 +192,12 @@ in
           enable = true,
           cmd = "/etc/profiles/per-user/will/bin/nextls"
         },
-        credo = {enable = true},
+        credo = {enable = false},
         elixirls = {enable = false},
       })
 
       require('gitsigns').setup()
-
+      require("output_panel").setup()
       require("telescope").setup({
         pickers = {
           find_files = { theme = "dropdown" },
@@ -228,7 +237,7 @@ in
           },
         }
 
-        local servers = { 'nil_ls', 'NextLS' }
+        local servers = { 'nil_ls' }
         for _, lsp in ipairs(servers) do
           require('lspconfig')[lsp].setup {
             capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
