@@ -5,9 +5,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nextls = {
+      url = "github:eein/next-ls";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, nextls, home-manager, ... }: {
     nixosConfigurations = {
       nanami = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -30,6 +33,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.will = import ./home.nix;
+            home-manager.extraSpecialArgs = {
+              inherit nextls;
+            };
           }
         ];
       };

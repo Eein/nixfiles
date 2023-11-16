@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, config, nextls, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -90,6 +90,10 @@
     pkgs.steam
     pkgs.unzip
     pkgs.xclip
+
+    # LSP
+    pkgs.nil
+    nextls.packages.x86_64-linux.default
 
     # Gnome Stuff
     pkgs.gnomeExtensions.user-themes

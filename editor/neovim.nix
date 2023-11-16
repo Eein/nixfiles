@@ -179,17 +179,9 @@ in
       }
 
       require("elixir").setup({
-        nextls = {
-          enable = false,
-          init_options = {
-            mix_env = "dev",
-            -- mix_target = "host",
-            experimental = {
-              completions = {
-                enable = true -- control if completions are enabled. defaults to false
-              }
-            }
-          },
+        nextls = { 
+          enable = true,
+          cmd = "/etc/profiles/per-user/will/bin/nextls"
         },
         credo = {enable = true},
         elixirls = {enable = false},
@@ -203,6 +195,45 @@ in
           live_grep = { theme = "dropdown" },
         },
       })
+      -- LSP + nvim-cmp setup
+        local lspc = require('lspconfig')
+        lspc.hls.setup {}
+        local cmp = require("cmp")
+        cmp.setup {
+          sources = {
+            { name = "nvim_lsp" },
+            { name = "path" },
+          },
+          formatting = {
+            format = function(entry, vim_item)
+              vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                path = "[Path]",
+              })[entry.source.name]
+              return vim_item
+            end
+          },
+          mapping = {
+            ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+            ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.close(),
+            ['<CR>'] = cmp.mapping.confirm({
+              behavior = cmp.ConfirmBehavior.Replace,
+              select = true,
+            })
+          },
+        }
+
+        local servers = { 'nil_ls' }
+        for _, lsp in ipairs(servers) do
+          require('lspconfig')[lsp].setup {
+            capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+            on_attach = on_attach,
+          }
+        end
 
       EOF
     '';
