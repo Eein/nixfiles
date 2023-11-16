@@ -195,6 +195,7 @@ in
           live_grep = { theme = "dropdown" },
         },
       })
+
       -- LSP + nvim-cmp setup
         local lspc = require('lspconfig')
         lspc.hls.setup {}
@@ -227,7 +228,7 @@ in
           },
         }
 
-        local servers = { 'nil_ls' }
+        local servers = { 'nil_ls', 'NextLS' }
         for _, lsp in ipairs(servers) do
           require('lspconfig')[lsp].setup {
             capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),

@@ -6,6 +6,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nextls = {
+      # url = "github:elixir-tools/next-ls";
       url = "github:eein/next-ls";
     };
   };
