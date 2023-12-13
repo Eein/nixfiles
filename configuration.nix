@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware/shibusa-configuration.nix
     ];
 
   # Nix
@@ -19,8 +19,11 @@
   };
 
   # Bootloader.
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/EFI";
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "shibusa"; # Define your hostname.
@@ -67,10 +70,12 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # rtkit
+  security.rtkit.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

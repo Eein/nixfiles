@@ -1,4 +1,4 @@
-{ pkgs, nextls, ... }:
+{ pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -90,10 +90,11 @@
     pkgs.steam
     pkgs.unzip
     pkgs.xclip
+    pkgs.pavucontrol
+    pkgs.megasync
 
     # LSP
     pkgs.nil
-    nextls.packages.x86_64-linux.default
 
     # Gnome Stuff
     pkgs.gnomeExtensions.user-themes
@@ -122,6 +123,10 @@
         enabled-extensions = [
           "user-theme@gnome-shell-extensions.gcampax.github.com"
         ];
+      };
+
+      "org/gnome/mutter" = {
+        edge-tiling = true;
       };
 
       "org/gnome/desktop/interface" = {

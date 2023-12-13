@@ -41,7 +41,6 @@ in
       cmp-nvim-lsp
       cmp-path
       nvim-lspconfig
-      elixir-tools-nvim
       indent-o-matic
       neomake
       neoformat
@@ -186,23 +185,6 @@ in
           enable = true
         }
       }
-
-      require("elixir").setup({
-        nextls = { 
-          enable = true,
-          cmd = "/etc/profiles/per-user/will/bin/nextls",
-          init_options = {
-            mix_env = "dev",
-            experimental = {
-              completions = {
-                enable = true -- control if completions are enabled. defaults to false
-              }
-            }
-          },
-        },
-        credo = {enable = false},
-        elixirls = {enable = false},
-      })
 
       require('gitsigns').setup()
       require("output_panel").setup()
