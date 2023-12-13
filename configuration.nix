@@ -110,7 +110,35 @@
     wget
   ];
 
+  # Exclude junk gnome packages we dont use
+  environment.gnome.excludePackages = with pkgs.gnome; [
+    baobab      # disk usage analyzer
+    cheese      # photo booth
+    eog         # image viewer
+    epiphany    # web browser
+    gedit       # text editor
+    simple-scan # document scanner
+    totem       # video player
+    yelp        # help viewer
+    # evince      # document viewer
+    # file-roller # archive manager
+    geary       # email client
+    seahorse    # password manager
+
+    # these should be self explanatory
+    gnome-calendar 
+    gnome-characters 
+    gnome-clocks 
+    gnome-contacts
+    gnome-logs 
+    gnome-maps 
+    gnome-music 
+    gnome-weather 
+    pkgs.gnome-connections
+  ];
+
   programs.fish.enable = true;
+  programs.steam.enable = true;
   fonts.fontconfig.enable = true;
   virtualisation.docker.enable = true; 
 

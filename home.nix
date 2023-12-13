@@ -87,11 +87,18 @@
     pkgs.magic-wormhole
     pkgs.pinentry
     pkgs.spotify
-    pkgs.steam
     pkgs.unzip
     pkgs.xclip
     pkgs.pavucontrol
     pkgs.megasync
+    pkgs.pciutils
+    pkgs.thunderbird
+    pkgs.killall
+
+    # Games
+    pkgs.xivlauncher
+    pkgs.bottles
+    pkgs.wine
 
     # LSP
     pkgs.nil
