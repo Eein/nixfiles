@@ -96,7 +96,6 @@
     pkgs.killall
 
     # Games
-    pkgs.xivlauncher
     pkgs.bottles
     pkgs.wine
 

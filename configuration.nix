@@ -38,6 +38,7 @@
 
   # Set your time zone.
   time.timeZone = "America/Phoenix";
+  time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -76,6 +77,7 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.ckb-next.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -108,6 +110,7 @@
   environment.systemPackages = with pkgs; [
     vim 
     wget
+    ckb-next
   ];
 
   # Exclude junk gnome packages we dont use
@@ -151,6 +154,7 @@
   # };
 
   # List services that you want to enable:
+  services.flatpak.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
