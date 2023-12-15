@@ -80,6 +80,7 @@
         enableGnomeExtensions = true;
       };
     })
+    pkgs.xclip
     pkgs.gcc
     pkgs.gnome-browser-connector
     pkgs.gnome.gnome-keyring
@@ -94,10 +95,16 @@
     pkgs.pciutils
     pkgs.thunderbird
     pkgs.killall
+    pkgs.awscli2
+    pkgs.k9s
+    pkgs.kubectl
 
     # Games
     pkgs.bottles
     pkgs.wine
+    
+    # Tools
+    pkgs.appimage-run
 
     # LSP
     pkgs.nil
@@ -138,6 +145,7 @@
       "org/gnome/desktop/interface" = {
         gtk-theme = "Catppuccin-Mocha-Standard-Sky-dark";
         color-scheme = "prefer-dark";
+        cursor-theme = "Adwaita";
         enable-hot-corners = false;
       };
 

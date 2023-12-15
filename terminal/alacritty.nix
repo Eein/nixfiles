@@ -5,6 +5,8 @@
       font.normal.family = "CaskaydiaCove Nerd Font";
       env = {
         "TERM" = "xterm-256color";
+        "XCURSOR_THEME" = "Adwaita";
+        "WAYLAND_DISPLAY" = "yes";
       };
       window = {
         padding = {
