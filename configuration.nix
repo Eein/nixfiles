@@ -74,6 +74,9 @@
   # rtkit
   security.rtkit.enable = true;
 
+  # 32 bit vulkan drivers
+  hardware.opengl.driSupport32Bit = true; 
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -111,6 +114,7 @@
     vim 
     wget
     ckb-next
+    xwaylandvideobridge
   ];
 
   # Exclude junk gnome packages we dont use

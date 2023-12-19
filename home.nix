@@ -101,7 +101,7 @@
 
     # Games
     pkgs.bottles
-    pkgs.wine
+    pkgs.wine64
     
     # Tools
     pkgs.appimage-run
@@ -117,7 +117,7 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Mocha-Standard-Sky-dark";
+      name = "Catppuccin-Mocha-Standard-Sky-Dark";
       package = (pkgs.catppuccin-gtk.override {
           accents = [ "sky" ]; # You can specify multiple accents here to output multiple themes
           size = "standard";
@@ -143,14 +143,14 @@
       };
 
       "org/gnome/desktop/interface" = {
-        gtk-theme = "Catppuccin-Mocha-Standard-Sky-dark";
+        gtk-theme = "Catppuccin-Mocha-Standard-Sky-Dark";
         color-scheme = "prefer-dark";
         cursor-theme = "Adwaita";
         enable-hot-corners = false;
       };
 
       "org/gnome/shell/extensions/user-theme" = {
-        name= "Catppuccin-Mocha-Standard-Sky-dark";
+        name= "Catppuccin-Mocha-Standard-Sky-Dark";
       };
     };
   };

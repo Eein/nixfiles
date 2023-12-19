@@ -12,3 +12,7 @@ Desktop:
 Laptop:
 
 `sudo nixos-rebuild switch --flake '.#nanami'`
+
+## Updating a machines pkg inputs
+
+`nix flake update`
