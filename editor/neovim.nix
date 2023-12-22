@@ -117,8 +117,8 @@ in
       vim.api.nvim_set_keymap("i", "jj", "<Esc>", opts)
       vim.api.nvim_set_keymap("n", "0", "^", opts)
       vim.api.nvim_set_keymap("n", "-", "<Nop>", opts)
-      vim.api.nvim_set_keymap("n", "<leader>b", ":BufOnly<CR>", opts)
       vim.api.nvim_set_keymap("n", "<leader>g", ":Telescope live_grep<CR>", opts)
+      vim.api.nvim_set_keymap("n", "<leader>b", ":%bd|e#<CR>", opts)
 
       -- Normal-mode commands
       vim.keymap.set("n", "<C-j>", ":MoveLine(1)<CR>", opts)

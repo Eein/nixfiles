@@ -32,6 +32,20 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    networking.extraHosts =
+    ''
+    127.0.0.1    tiltifydev.com
+    127.0.0.1    api.tiltifydev.com
+    127.0.0.1    dashboard.tiltifydev.com
+    127.0.0.1    causeapi.tiltifydev.com
+    127.0.0.1    causes.tiltifydev.com
+    127.0.0.1    userapi.tiltifydev.com
+    127.0.0.1    overlays.tiltifydev.com
+    127.0.0.1    donate.tiltifydev.com
+    127.0.0.1    twitch-ext.tiltifydev.com
+    127.0.0.1    id.tiltifydev.com
+    127.0.0.1    site-search.tiltifydev.com
+    '';
 
   # Enable networking
   networking.networkmanager.enable = true;

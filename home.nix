@@ -17,8 +17,8 @@
   home.stateVersion = "23.05";
 
   home.sessionVariables = {
-    GTK_THEME = "Catppuccin-Mocha-Standard-Sky-dark";
-    QT_STYLE_OVERRIDE = "Catppuccin-Mocha-Standard-Sky-dark";
+    GTK_THEME = "Catppuccin-Mocha-Standard-Sky-Dark";
+    QT_STYLE_OVERRIDE = "Catppuccin-Mocha-Standard-Sky-Dark";
   };
 
   programs.git = {
@@ -31,6 +31,7 @@
     };
   };
 
+  programs.vscode.enable = true;
   programs.gpg.enable = true;
   services.gpg-agent = {                          
     enable = true;
@@ -116,6 +117,17 @@
 
   gtk = {
     enable = true;
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
     theme = {
       name = "Catppuccin-Mocha-Standard-Sky-Dark";
       package = (pkgs.catppuccin-gtk.override {
