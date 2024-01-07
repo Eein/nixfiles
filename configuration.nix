@@ -7,7 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware/shibusa-configuration.nix
+      ./hosts/shibusa/configuration.nix
+      ./users/will.nix
     ];
 
   # Nix
@@ -112,12 +113,6 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.will = {
-    isNormalUser = true;
-    description = "will";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    shell = pkgs.fish;
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
