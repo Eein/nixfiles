@@ -20,4 +20,7 @@ Ika is a homelab that consists of a couple of:
 
 ## Services
 
--
+
+## TODO
+
+- backups for redundant drive
