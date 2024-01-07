@@ -54,6 +54,7 @@ in
       vim-floaterm
       movedotnvim
       outputpanel
+      vim-sleuth
       vim-bbye
       telescope-nvim
       vim-visual-multi
