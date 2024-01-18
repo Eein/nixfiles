@@ -6,4 +6,6 @@
 
 {
   networking.hostName = "shibusa"; # Define your hostname.
+  # this needs to be fixed
+  boot.loader.efi.efiSysMountPoint = "/boot/EFI";
 }

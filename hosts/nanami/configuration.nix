@@ -11,4 +11,6 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  # this needs to be fixed
+  boot.loader.efi.efiSysMountPoint = "/boot";
 }
