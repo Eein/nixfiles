@@ -12,6 +12,7 @@
       nanami = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ./hosts/nanami/configuration.nix
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
@@ -24,6 +25,7 @@
       shibusa = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ./hosts/shibusa/configuration.nix
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {

@@ -7,7 +7,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hosts/shibusa/configuration.nix
       ./users/will.nix
     ];
 
