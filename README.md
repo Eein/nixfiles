@@ -9,9 +9,17 @@
 
 `sudo nixos-rebuild switch --flake '.#shibusa'`
 
+#### New installation
+
+`sudo nixos-install --flake '.#shibusa' --impure`
+
 ### Laptop:
 
 `sudo nixos-rebuild switch --flake '.#nanami'`
+
+#### New installation
+
+`sudo nixos-install --flake '.#nanami' --impure`
 
 ### Homelab
 

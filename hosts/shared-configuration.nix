@@ -7,8 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hosts/shibusa/configuration.nix
-      ./users/will.nix
+      ../users/will.nix
     ];
 
   # Nix
@@ -21,13 +20,12 @@
 
   # Bootloader.
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/EFI";
+  boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "nodev";
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "shibusa"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

@@ -12,7 +12,9 @@
       nanami = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
+          ./hosts/nanami/hardware-configuration.nix
+          ./hosts/shared-configuration.nix
+          ./hosts/nanami/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -24,7 +26,9 @@
       shibusa = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
+          ./hosts/shibusa/hardware-configuration.nix
+          ./hosts/shared-configuration.nix
+          ./hosts/shibusa/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
