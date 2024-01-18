@@ -3,11 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, nixos-hardware, ... }: {
     nixosConfigurations = {
       nanami = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -15,6 +16,7 @@
           ./hosts/nanami/hardware-configuration.nix
           ./hosts/shared-configuration.nix
           ./hosts/nanami/configuration.nix
+          nixos-hardware.nixosModules.asus-zephyrus-ga401
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
