@@ -8,4 +8,9 @@
   networking.hostName = "nanami"; # Define your hostname.
   # this needs to be fixed
   boot.loader.efi.efiSysMountPoint = "/boot";
+
+  services.clamav = {
+    daemon.enable = true;
+    updater.enable = true;
+  };
 }
