@@ -102,6 +102,7 @@
     pkgs.awscli2
     pkgs.k9s
     pkgs.kubectl
+    pkgs.rustup
 
     # Games
     pkgs.bottles
