@@ -82,9 +82,17 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi.enable = false;
 
   # rtkit
   security.rtkit.enable = true;
+  security.sudo = {
+    enable = true;
+    execWheelOnly = true;
+    extraRules = [
+    { groups = [ "wheel" ]; commands = [ "ALL" ]; }
+    ];
+  };
 
   # 32 bit vulkan drivers
   hardware.opengl.driSupport32Bit = true; 
