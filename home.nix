@@ -103,6 +103,8 @@
     pkgs.k9s
     pkgs.kubectl
     pkgs.rustup
+    pkgs.dotnet-sdk_7
+    pkgs.vscode-extensions.ms-dotnettools.csharp
 
     # Games
     pkgs.bottles
@@ -113,6 +115,7 @@
 
     # LSP
     pkgs.nil
+    pkgs.omnisharp-roslyn
 
     # Gnome Stuff
     pkgs.gnomeExtensions.user-themes

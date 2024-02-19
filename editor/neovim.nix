@@ -43,6 +43,7 @@ in
       nvim-lspconfig
       indent-o-matic
       neomake
+      trouble-nvim
       neoformat
       vim-surround
       vim-repeat
@@ -233,8 +234,21 @@ in
           },
         }
 
+        require('trouble').setup {
+          icons = false,
+          use_diagnostic_signs = true,
+        }
+
         require('lspconfig')['nil_ls'].setup {
           capabilities = capabilities
+        }
+
+        local omni_pid = vim.fn.getpid()
+
+        require('lspconfig').omnisharp.setup {
+          cmd = { "OmniSharp", "--languageserver" , "--hostPID", tostring(omni_pid) },
+          capabilities = capabilities
+          -- Additional configuration can be added here
         }
 
         -- Map LSP keybindings
