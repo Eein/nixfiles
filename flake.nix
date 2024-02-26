@@ -13,10 +13,10 @@
       nanami = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          nixos-hardware.nixosModules.asus-zephyrus-ga401
           ./hosts/nanami/hardware-configuration.nix
           ./hosts/shared-configuration.nix
           ./hosts/nanami/configuration.nix
-          nixos-hardware.nixosModules.asus-zephyrus-ga401
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

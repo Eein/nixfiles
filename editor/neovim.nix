@@ -45,6 +45,7 @@ in
       neomake
       trouble-nvim
       neoformat
+      tslime-vim
       vim-surround
       vim-repeat
       vim-endwise
@@ -169,6 +170,15 @@ in
         let g:floaterm_width = 0.9
         let g:floaterm_height = 0.95
         let g:floaterm_position = 'center'
+
+        let g:tslime = {}
+        let g:tslime['session'] = str2nr(system('tmux display-message -p "#S"'))
+        let g:tslime['window'] = 3
+        let g:tslime['pane'] = 1
+        let test#strategy = "tslime"
+        nnoremap <silent> <Leader>t :w<CR> :TestFile<CR>
+        nnoremap <silent> <Leader>s :w<CR> :TestNearest<CR>
+        nnoremap <silent> <Leader>l :w<CR> :TestLast<CR>
       ]])
 
       -- Auto formatting
