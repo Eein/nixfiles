@@ -45,6 +45,7 @@ in
       neomake
       trouble-nvim
       neoformat
+      vim-test
       tslime-vim
       vim-surround
       vim-repeat
@@ -152,12 +153,6 @@ in
       --   autocmd BufRead,BufNewFile *.{exs} setlocal filetype=elixir
       -- ]])
 
-      -- vim.cmd([[
-      --   let test#strategy = "tslime"
-      --   nmap <silent> <leader>t :TestNearest<CR>
-      --   nmap <silent> <leader>T :TestFile<CR>
-      -- ]])
-
       vim.cmd([[
         :command Grepper Telescope live_grep
       ]])
@@ -173,8 +168,8 @@ in
 
         let g:tslime = {}
         let g:tslime['session'] = str2nr(system('tmux display-message -p "#S"'))
-        let g:tslime['window'] = 3
-        let g:tslime['pane'] = 1
+        let g:tslime['window'] = 1
+        let g:tslime['pane'] = 2
         let test#strategy = "tslime"
         nnoremap <silent> <Leader>t :w<CR> :TestFile<CR>
         nnoremap <silent> <Leader>s :w<CR> :TestNearest<CR>
