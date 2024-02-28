@@ -6,7 +6,7 @@
       env = {
         "TERM" = "xterm-256color";
         "XCURSOR_THEME" = "Adwaita";
-        "WAYLAND_DISPLAY" = "yes";
+        "WAYLAND_DISPLAY" = "";
       };
       window = {
         padding = {
@@ -48,10 +48,11 @@
             background = "#A6E3A1"; # green
           };
 
-          footer_bar = {
-            foreground = "#1E1E2E"; # base
-            background = "#A6ADC8"; # subtext0
-          };
+          # no longer used
+          # footer_bar = {
+          #   foreground = "#1E1E2E"; # base
+          #   background = "#A6ADC8"; # subtext0
+          # };
         };
 
         # Keyboard regex hints
