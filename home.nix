@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -143,6 +143,24 @@
           tweaks = [ "normal" ]; # You can also specify multiple tweaks here
           variant = "mocha";
       });
+    };
+  };
+
+  xdg.desktopEntries.Alacritty = {
+    type = "Application";
+    exec = "env WAYLAND_DISPLAY= alacritty";
+    icon = "Alacritty";
+    terminal = false;
+    categories = ["System" "TerminalEmulator"];
+    name = "Alacritty";
+    genericName = "Alacritty";
+    comment = "A fast, cross-platform, OpenGL terminal emulator";
+    startupNotify = true;
+    actions = {
+      "New" = {
+        name = "New Terminal";
+        exec = "env WAYLAND_DISPLAY= alacritty";
+      };
     };
   };
 

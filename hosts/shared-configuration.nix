@@ -160,7 +160,10 @@
     pkgs.gnome-connections
   ];
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+  };
+
   programs.steam.enable = true;
   fonts.fontconfig.enable = true;
   virtualisation.docker.enable = true; 
