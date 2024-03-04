@@ -261,8 +261,8 @@ in
         }
 
         -- Map LSP keybindings
-        -- vim.api.nvim_set_keymap("n", "lD", ":lua vim.lsp.buf.declaration()<CR>", opts)
-        vim.api.nvim_set_keymap("n", "ld", ":lua vim.lsp.buf.definition()<CR>", opts)
+        -- vim.api.nvim_set_keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
+        vim.api.nvim_set_keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
         vim.api.nvim_set_keymap("n", "<leader>=", ":lua vim.lsp.buf.formatting()<CR>", opts)
         vim.api.nvim_set_keymap("n", "<leader>ah", ":lua vim.lsp.buf.hover()<CR>", opts)
 
