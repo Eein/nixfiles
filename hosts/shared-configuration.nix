@@ -18,6 +18,10 @@
     '';
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "freeimage-unstable-2021-11-01"
+  ];
+
   # Bootloader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true;
