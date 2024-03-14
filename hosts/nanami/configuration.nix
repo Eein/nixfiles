@@ -9,6 +9,20 @@
   # this needs to be fixed
   boot.loader.efi.efiSysMountPoint = "/boot";
 
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
+    };
+  };
+
   services.clamav = {
     daemon.enable = true;
     updater.enable = true;
