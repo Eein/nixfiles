@@ -245,6 +245,7 @@ in
           use_diagnostic_signs = true,
         }
 
+        require('lspconfig')['astro'].setup({})
         require('lspconfig')['nil_ls'].setup {
           capabilities = capabilities
         }
