@@ -8,6 +8,12 @@
   networking.hostName = "shibusa"; # Define your hostname.
   # this needs to be fixed
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
+
+  services.clamav = {
+    daemon.enable = true;
+    updater.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     via
   ];

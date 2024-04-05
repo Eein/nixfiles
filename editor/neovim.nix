@@ -28,6 +28,16 @@ let
       hash = "sha256-Gm03u8PidPQ/cNkl6K5rynZiux12lqgv0E5RXItw8nI=";
     };
   };
+
+  tslime = pkgs.vimUtils.buildVimPlugin {
+    name = "tslime-vim";
+    src = pkgs.fetchFromGitHub {
+      owner = "Eein";
+      repo = "tslime.vim";
+      rev = "f457a25dbd1106cf5e94b39bb0f0a84279ef5477";
+      hash = "sha256-FwVakc53H4VRFKoWeq8iCwoXjbn/sX0Q1oEnz7UTlIM=";
+    };
+  };
 in
 {
   programs.neovim = {
@@ -46,7 +56,7 @@ in
       trouble-nvim
       neoformat
       vim-test
-      tslime-vim
+      tslime
       vim-surround
       vim-repeat
       vim-endwise
@@ -171,6 +181,7 @@ in
         let g:tslime['session'] = str2nr(system('tmux display-message -p "#S"'))
         let g:tslime['window'] = 1
         let g:tslime['pane'] = 2
+        let g:tslime_pre_command = "C-c"
         let test#strategy = "tslime"
         nnoremap <silent> <Leader>t :w<CR> :TestFile<CR>
         nnoremap <silent> <Leader>s :w<CR> :TestNearest<CR>
