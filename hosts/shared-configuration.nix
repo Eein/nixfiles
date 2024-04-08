@@ -80,8 +80,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      variant = "";
+      layout = "us";
+    };
   };
 
   # Enable CUPS to print documents.
@@ -177,7 +179,7 @@
   # programs.mtr.enable = true;
   programs.gnupg.agent = {
      enable = true;
-     pinentryFlavor = "curses";
+     pinentryPackage = pkgs.pinentry-curses;
      enableSSHSupport = true;
   };
 
