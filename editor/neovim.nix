@@ -256,6 +256,15 @@ in
           use_diagnostic_signs = true,
         }
 
+        require('lspconfig').ruff_lsp.setup {
+          init_options = {
+            settings = {
+              -- Any extra CLI arguments for `ruff` go here.
+              args = {},
+            }
+          }
+        }
+
         require('lspconfig')['astro'].setup({})
         require('lspconfig')['nil_ls'].setup {
           capabilities = capabilities

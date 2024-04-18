@@ -75,7 +75,7 @@
   # programs.home-manager.enable = true;
 
   home.packages = [
-    pkgs.discord
+    pkgs.vesktop
     pkgs.docker-compose
     # Eventually move this to home-manager profiles
     # and automatically install extensions
@@ -114,7 +114,11 @@
 
     # LSP
     pkgs.nil
+    pkgs.ruff
+    pkgs.ruff-lsp
     # pkgs.omnisharp-roslyn
+
+
 
     # Gnome Stuff
     pkgs.gnomeExtensions.user-themes
