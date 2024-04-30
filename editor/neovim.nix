@@ -19,15 +19,16 @@ let
       hash = "sha256-t1JxAwFZb2IceaVfxgg1JeXYDVmPOFjSr2RMa+BoS1s=";
     };
   };
-  outputpanel = pkgs.vimUtils.buildVimPlugin {
-    name = "output-panel.nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "mhanberg";
-      repo = "output-panel.nvim";
-      rev = "65bb44a5d5dbd40f3793a8c591b65a0c5f260bd9";
-      hash = "sha256-Gm03u8PidPQ/cNkl6K5rynZiux12lqgv0E5RXItw8nI=";
-    };
-  };
+
+  # outputpanel = pkgs.vimUtils.buildVimPlugin {
+  #   name = "output-panel.nvim";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "mhanberg";
+  #     repo = "output-panel.nvim";
+  #     rev = "65bb44a5d5dbd40f3793a8c591b65a0c5f260bd9";
+  #     hash = "sha256-Gm03u8PidPQ/cNkl6K5rynZiux12lqgv0E5RXItw8nI=";
+  #   };
+  # };
 
   tslime = pkgs.vimUtils.buildVimPlugin {
     name = "tslime-vim";
@@ -67,7 +68,6 @@ in
       vim-fugitive
       vim-floaterm
       movedotnvim
-      outputpanel
       vim-sleuth
       vim-bbye
       telescope-nvim
@@ -190,12 +190,12 @@ in
       ]])
 
       -- Auto formatting
-      vim.cmd([[
-        augroup fmt
-          autocmd!
-          autocmd BufWritePre * try | undojoin | Neoformat | catch /E790/ | Neoformat | endtry
-        augroup END
-      ]])
+      -- vim.cmd([[
+      --   augroup fmt
+      --     autocmd!
+      --     autocmd BufWritePre * try | undojoin | Neoformat | catch /E790/ | Neoformat | endtry
+      --   augroup END
+      -- ]])
 
       require'nvim-treesitter.configs'.setup {
         indent = {
@@ -207,7 +207,7 @@ in
       }
 
       require('gitsigns').setup()
-      require("output_panel").setup()
+      -- require("output_panel").setup()
       require("telescope").setup({
         pickers = {
           find_files = { theme = "dropdown" },
