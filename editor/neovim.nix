@@ -45,6 +45,7 @@ in
     defaultEditor = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
+      rustaceanvim
       nvim-treesitter.withAllGrammars
       catppuccin-nvim
       nvim-cmp
