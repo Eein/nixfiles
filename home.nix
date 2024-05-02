@@ -84,6 +84,7 @@
         enableGnomeExtensions = true;
       };
     })
+    pkgs.halloy
     pkgs.xclip
     pkgs.gcc
     pkgs.gnome-browser-connector
