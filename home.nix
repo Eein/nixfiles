@@ -101,8 +101,10 @@
     pkgs.thunderbird
     pkgs.killall
     pkgs.awscli2
+    pkgs.azure-cli
     pkgs.k9s
     pkgs.kubectl
+    pkgs.kubelogin
     # pkgs.dotnet-sdk_7
     # pkgs.vscode-extensions.ms-dotnettools.csharp
 
