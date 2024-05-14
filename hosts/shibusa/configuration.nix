@@ -17,5 +17,6 @@
   programs.nix-ld.enable = true;
   environment.systemPackages = with pkgs; [
     via
+    obs-studio
   ];
 }

@@ -13,6 +13,7 @@
   # Nix
   nix = {
     package = pkgs.nixFlakes;
+    settings.trusted-users = [ "root" "@wheel" ];
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -138,6 +139,7 @@
     wget
     ckb-next
     xwaylandvideobridge
+    devenv
   ];
 
   # Exclude junk gnome packages we dont use
