@@ -169,8 +169,11 @@ in
         :command Grepper Telescope live_grep
       ]])
 
+      -- Do not add this - as it breaks link propogation when using :GBrowse or
+      -- shift-click
+      -- let g:lf_replace_netrw = 1
+
       vim.cmd([[
-        let g:lf_replace_netrw = 1
         let g:lf_map_keys = 0
         let g:floaterm_opener = "edit"
 

@@ -45,6 +45,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
+      tmux = "tmux -L local";
       ls = "eza";
     };
     interactiveShellInit = ''
@@ -105,23 +106,18 @@
     pkgs.k9s
     pkgs.kubectl
     pkgs.kubelogin
-    # pkgs.dotnet-sdk_7
-    # pkgs.vscode-extensions.ms-dotnettools.csharp
 
     # Games
     pkgs.bottles
     pkgs.wine64
     
     # Tools
-    pkgs.appimage-run
+    # pkgs.appimage-run
 
     # LSP
     pkgs.nil
     pkgs.ruff
     pkgs.ruff-lsp
-    # pkgs.omnisharp-roslyn
-
-
 
     # Gnome Stuff
     pkgs.gnomeExtensions.user-themes

@@ -17,16 +17,6 @@
       # set -ag terminal-overrides ",xterm-256color:RGB"
       set-option -sa terminal-overrides ',*256color:Tc'
       set-option -sa terminal-overrides ',xterm*:Tc'
-      
-
-
-
-
-      # reload tmux config with ` + r
-      unbind r
-      bind r \
-      source-file ~/.tmux.conf \;\
-       display 'Reloaded tmux config.'
 
       bind Up resize-pane -U 4
       bind Down resize-pane -D 4
