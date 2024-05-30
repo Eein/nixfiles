@@ -48,6 +48,7 @@ in
     plugins = with pkgs.vimPlugins; [
       # outputpanel
       # elixir-tools-nvim
+      nvim-spectre
       rustaceanvim
       nvim-treesitter.withAllGrammars
       catppuccin-nvim
@@ -160,6 +161,10 @@ in
         :command Grepper Telescope live_grep
       ]])
 
+      vim.keymap.set('n', '<leader>f', '<cmd>lua require("spectre").toggle()<CR>', {
+          desc = "Toggle Spectre"
+      })
+
       -- Do not add this - as it breaks link propogation when using :GBrowse or
       -- shift-click
       -- let g:lf_replace_netrw = 1
@@ -262,8 +267,6 @@ in
 
       require("typescript-tools").setup {
       }
-
-      require("output_panel").setup()
 
       if vim.fn.executable('rg') == 1 then
           vim.o.grepprg="rg --vimgrep --hidden --glob ‘!.git’"
