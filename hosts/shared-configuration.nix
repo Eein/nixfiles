@@ -134,12 +134,12 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim 
-    wget
-    ckb-next
-    xwaylandvideobridge
-    devenv
+  environment.systemPackages = [
+    pkgs.vim 
+    pkgs.wget
+    pkgs.ckb-next
+    pkgs.xwaylandvideobridge
+    pkgs.devenv
   ];
 
   # Exclude junk gnome packages we dont use

@@ -46,6 +46,8 @@ in
     defaultEditor = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
+      # outputpanel
+      # elixir-tools-nvim
       rustaceanvim
       nvim-treesitter.withAllGrammars
       catppuccin-nvim
@@ -260,6 +262,30 @@ in
 
       require("typescript-tools").setup {
       }
+
+      require("output_panel").setup()
+
+      if vim.fn.executable('rg') == 1 then
+          vim.o.grepprg="rg --vimgrep --hidden --glob ‘!.git’"
+      end
+
+      -- if vim.fn.executable("/home/will/.local/bin/nextls") then
+      --   require("elixir").setup({
+      --     nextls = {
+      --       enable = true,
+      --       cmd = "/home/will/.local/bin/nextls",
+      --       init_options = {
+      --         experimental = {
+      --           completions = {
+      --             enable = true -- control if completions are enabled. defaults to false
+      --           }
+      --         }
+      --       },
+      --     },
+      --     credo = {enable = true},
+      --     elixirls = {enable = false},
+      --   })
+      -- end
 
       -- Map LSP keybindings
       -- vim.api.nvim_set_keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
