@@ -7,7 +7,7 @@
     isNormalUser = true;
     description = "will";
     group = "will";
-    extraGroups = [ "dialout" "networkmanager" "wheel" "docker" "input" ];
+    extraGroups = [ "dialout" "networkmanager" "wheel" "docker" "input" "cdrom" "scanner" "lp" ];
     shell = pkgs.fish;
     initialPassword = "changeme";
     openssh.authorizedKeys.keys = [

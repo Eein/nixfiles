@@ -9,6 +9,8 @@
   # this needs to be fixed
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
 
+  programs.coolercontrol.enable = true;
+
   services.clamav = {
     daemon.enable = true;
     updater.enable = true;
@@ -16,6 +18,8 @@
 
   programs.nix-ld.enable = true;
   environment.systemPackages = with pkgs; [
+    easyeffects
+    cdrdao
     via
     obs-studio
   ];
