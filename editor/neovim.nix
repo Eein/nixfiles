@@ -48,7 +48,7 @@ in
     plugins = with pkgs.vimPlugins; [
       # outputpanel
       # elixir-tools-nvim
-      nvim-spectre
+      vim-abolish
       rustaceanvim
       nvim-treesitter.withAllGrammars
       catppuccin-nvim
@@ -160,10 +160,6 @@ in
       vim.cmd([[
         :command Grepper Telescope live_grep
       ]])
-
-      vim.keymap.set('n', '<leader>f', '<cmd>lua require("spectre").toggle()<CR>', {
-          desc = "Toggle Spectre"
-      })
 
       -- Do not add this - as it breaks link propogation when using :GBrowse or
       -- shift-click
