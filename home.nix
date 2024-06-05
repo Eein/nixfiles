@@ -113,11 +113,17 @@
     
     # Tools
     # pkgs.appimage-run
+    pkgs.teams-for-linux
 
     # LSP
     pkgs.nil
     pkgs.ruff
     pkgs.ruff-lsp
+
+    # Video
+    pkgs.streamlink-twitch-gui-bin
+    pkgs.streamlink
+    pkgs.vlc
 
     # Gnome Stuff
     pkgs.gnomeExtensions.user-themes

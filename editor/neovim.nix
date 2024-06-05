@@ -78,6 +78,7 @@ in
       lf-vim
       gitsigns-nvim
       fzf-vim
+      zig-vim
       typescript-tools-nvim
     ];
     extraPackages = with pkgs;
