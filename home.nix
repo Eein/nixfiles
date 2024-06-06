@@ -65,6 +65,26 @@
   };
   programs.ripgrep.enable = true;
   programs.vim.enable = true;
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox.override {
+      nativeMessagingHosts = [
+        # Gnome shell native connector
+        pkgs.gnome-browser-connector
+      ];
+    };
+    profiles = {
+      default = {
+        id = 0;
+        name = "default";
+        isDefault = true;
+        settings = {
+           "media.hardware-video-decoding.enabled" = true;
+           "media.hardware-video-decoding.force-enabled" = true;
+        };
+      };
+    };
+  };
 
   imports = [
     ./editor/neovim.nix
@@ -80,11 +100,6 @@
     pkgs.docker-compose
     # Eventually move this to home-manager profiles
     # and automatically install extensions
-    (pkgs.firefox.override {
-      cfg = {
-        enableGnomeExtensions = true;
-      };
-    })
     pkgs.halloy
     pkgs.xclip
     pkgs.gcc
@@ -119,11 +134,6 @@
     pkgs.nil
     pkgs.ruff
     pkgs.ruff-lsp
-
-    # Video
-    pkgs.streamlink-twitch-gui-bin
-    pkgs.streamlink
-    pkgs.vlc
 
     # Gnome Stuff
     pkgs.gnomeExtensions.user-themes
