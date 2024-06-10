@@ -75,7 +75,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.tailscale.enable = true;
-  networking.firewall.allowedUDPPorts = [ 41641 ];
+  services.openssh.ports = [ 22 443 2222 7422 ];
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
