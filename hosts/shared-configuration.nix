@@ -19,6 +19,10 @@
     '';
   };
 
+  systemd.services.ckb-next = {
+    enable = true;
+  };
+
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01"
   ];

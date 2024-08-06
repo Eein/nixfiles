@@ -191,6 +191,7 @@
 
       "org/gnome/mutter" = {
         edge-tiling = true;
+        experimental-features = ["variable-refresh-rate"];
       };
 
       "org/gnome/desktop/interface" = {
