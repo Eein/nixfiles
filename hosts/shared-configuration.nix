@@ -43,6 +43,7 @@
     ''
     127.0.0.1    tiltifydev.com
     127.0.0.1    api.tiltifydev.com
+    127.0.0.1    app.tiltifydev.com
     127.0.0.1    dashboard.tiltifydev.com
     127.0.0.1    causeapi.tiltifydev.com
     127.0.0.1    causes.tiltifydev.com
