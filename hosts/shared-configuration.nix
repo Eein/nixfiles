@@ -57,7 +57,8 @@
     127.0.0.1    twitch-ext.tiltifydev.com
     127.0.0.1    id.tiltifydev.com
     127.0.0.1    site-search.tiltifydev.com
-    '' + builtins.readFile ./secret-hosts.txt;
+    ${builtins.readFile ./secret-hosts.txt}
+    '';
     
 
   # Enable networking

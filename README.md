@@ -35,3 +35,11 @@ Building the ISO for the base image:
 
 `nix flake update`
 
+# Secret Hosts
+
+add custom hosts for cloudflare warp in `hosts/secret-hosts.txt` then run
+
+```
+git update-index --assume-unchanged hosts/secret-hosts.txt
+```
+
