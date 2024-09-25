@@ -142,6 +142,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
+    pkgs.cloudflare-warp
     pkgs.vim 
     pkgs.wget
     pkgs.ckb-next
