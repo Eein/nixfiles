@@ -87,17 +87,10 @@
   };
 
   imports = [
-    ./modules/cloudflare-warp.nix
     ./editor/neovim.nix
     ./terminal/tmux.nix
     ./terminal/alacritty.nix
   ];
-
-  # Cloudflare Warp
-  services.cloudflare-warp = {
-    enable = true;
-    certificate = ./Cloudflare_CA.crt; # download here https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/install-cloudflare-cert/
-  };
 
   # Let Home Manager install and manage itself.
   # programs.home-manager.enable = true;

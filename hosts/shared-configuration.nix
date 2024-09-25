@@ -10,6 +10,10 @@
       ../users/will.nix
     ];
 
+  # Cloudflare Warp
+  systemd.packages = [ pkgs.cloudflare-warp ]; # for warp-cli
+  systemd.targets.multi-user.wants = [ "warp-svc.service" ]; # causes warp-svc to be started automatically
+
   # Nix
   nix = {
     package = pkgs.nixFlakes;
@@ -39,7 +43,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-    networking.extraHosts =
+  networking.extraHosts = 
     ''
     127.0.0.1    tiltifydev.com
     127.0.0.1    api.tiltifydev.com
@@ -53,7 +57,8 @@
     127.0.0.1    twitch-ext.tiltifydev.com
     127.0.0.1    id.tiltifydev.com
     127.0.0.1    site-search.tiltifydev.com
-    '';
+    '' + builtins.readFile ./secret-hosts.txt;
+    
 
   # Enable networking
   networking.networkmanager.enable = true;
