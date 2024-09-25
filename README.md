@@ -35,3 +35,7 @@ Building the ISO for the base image:
 
 `nix flake update`
 
+## Cloudflare Warp
+
+To use cloudflare warp, copy the cert file to the root of the repo.
+
