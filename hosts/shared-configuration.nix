@@ -103,9 +103,14 @@
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    drivers = with pkgs; [ gutenprint canon-cups-ufr2 cups-filters ];
+    drivers = [ pkgs.canon-cups-ufr2 ];
   };
-  services.avahi.enable = false;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # rtkit
   security.rtkit.enable = true;
