@@ -108,6 +108,7 @@ in
       vim.opt.termguicolors = true
 
       vim.cmd([[
+        let $FZF_DEFAULT_COMMAND = "rg --files --hidden -g '!.git/'"
         cnoreabbrev E Lf
         set wildignorecase
         set wildmode=list:longest
@@ -124,6 +125,7 @@ in
         set wildignore+=_build/**
         set wildignore+=deps/**
         set wildignore+=tmp/**
+        set wildignore+=target/**
         set wildignore+=*/.git/*,*/tmp/*,*.swp
         set wildignore+=*.cache
         set wildignore+=*.png,*.jpg,*.gif
@@ -148,11 +150,6 @@ in
       -- Visual-mode commands
       vim.keymap.set("v", "<C-j>", ":MoveBlock(1)<CR>", opts)
       vim.keymap.set("v", "<C-k>", ":MoveBlock(-1)<CR>", opts)
-
-      vim.cmd([[
-        set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-        let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-      ]])
 
       vim.cmd([[
         let g:move_key_modifier = 'C'
@@ -264,10 +261,6 @@ in
 
       require("typescript-tools").setup {
       }
-
-      if vim.fn.executable('rg') == 1 then
-          vim.o.grepprg="rg --vimgrep --hidden --glob ‘!.git’"
-      end
 
       -- if vim.fn.executable("/home/will/.local/bin/nextls") then
       --   require("elixir").setup({

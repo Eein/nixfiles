@@ -154,11 +154,13 @@
   # $ nix search wget
   environment.systemPackages = [
     pkgs.cloudflare-warp
+    pkgs.gnomeExtensions.cloudflare-warp-toggle
     pkgs.vim 
     pkgs.wget
     pkgs.ckb-next
     pkgs.xwaylandvideobridge
     pkgs.devenv
+
   ];
 
   # Exclude junk gnome packages we dont use
