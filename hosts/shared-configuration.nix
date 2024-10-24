@@ -160,9 +160,24 @@
     pkgs.ckb-next
     pkgs.xwaylandvideobridge
     pkgs.devenv
+    pkgs.dotnetCorePackages.dotnet_8.sdk
+    pkgs.dotnetCorePackages.dotnet_8.runtime
+    pkgs.dotnetCorePackages.dotnet_8.aspnetcore
+    pkgs.avalonia-ilspy
+    (pkgs.jetbrains.rider.overrideAttrs {
+      version = "2024.2.7";
+      src = builtins.fetchurl {
+        url = "https://download.jetbrains.com/rider/JetBrains.Rider-2024.2.7.tar.gz";
+        sha256 = "0hkypbxrrp0b4rffjawfr7flagyy1zvqzsnrq21bkvmjz6gs9pbi";
+      };
+      extraPkgs = [ pkgs.icu ];
+    })
 
   ];
 
+  environment.sessionVariables = {
+    DOTNET_ROOT = "${pkgs.dotnet-sdk}";
+  };
   # Exclude junk gnome packages we dont use
   environment.gnome.excludePackages = with pkgs.gnome; [
     baobab      # disk usage analyzer
