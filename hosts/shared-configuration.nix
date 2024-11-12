@@ -16,7 +16,7 @@
 
   # Nix
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     settings.trusted-users = [ "root" "@wheel" ];
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -125,9 +125,8 @@
   # 32 bit vulkan drivers
   hardware.opengl.driSupport32Bit = true; 
 
-  # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
+  # Enable sound with pipewire.
   hardware.ckb-next.enable = true;
   services.pipewire = {
     enable = true;
@@ -183,7 +182,7 @@
     DOTNET_ROOT = "${pkgs.dotnet-sdk}";
   };
   # Exclude junk gnome packages we dont use
-  environment.gnome.excludePackages = with pkgs.gnome; [
+  environment.gnome.excludePackages = with pkgs; [
     baobab      # disk usage analyzer
     cheese      # photo booth
     eog         # image viewer

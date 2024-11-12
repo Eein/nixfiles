@@ -9,6 +9,7 @@
   # this needs to be fixed
   boot.loader.efi.efiSysMountPoint = "/boot";
 
+  services.power-profiles-daemon.enable = false;
   services.auto-cpufreq = {
     enable = true;
     settings = {

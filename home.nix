@@ -104,8 +104,8 @@
     pkgs.xclip
     pkgs.gcc
     pkgs.gnome-browser-connector
-    pkgs.gnome.gnome-keyring
-    pkgs.gnome.gnome-tweaks
+    pkgs.gnome-keyring
+    pkgs.gnome-tweaks
     pkgs.magic-wormhole
     pkgs.pinentry
     pkgs.spotify
