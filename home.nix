@@ -16,10 +16,10 @@
   # changes in each release.
   home.stateVersion = "23.05";
 
-  home.sessionVariables = {
-    GTK_THEME = "Catppuccin-Mocha-Standard-Sky-Dark";
-    QT_STYLE_OVERRIDE = "Catppuccin-Mocha-Standard-Sky-Dark";
-  };
+  # home.sessionVariables = {
+  #   GTK_THEME = "Catppuccin-Mocha-Standard-Sky-Dark";
+  #   QT_STYLE_OVERRIDE = "Catppuccin-Mocha-Standard-Sky-Dark";
+  # };
 
   programs.git = {
     enable = true;
@@ -143,38 +143,60 @@
 
   gtk = {
     enable = true;
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
     theme = {
-      name = "Catppuccin-Mocha-Standard-Sky-Dark";
-      package = (pkgs.catppuccin-gtk.override {
-          accents = [ "sky" ]; # You can specify multiple accents here to output multiple themes
-          size = "standard";
-          tweaks = [ "normal" ]; # You can also specify multiple tweaks here
-          variant = "mocha";
-      });
+      name = "Adwaita-dark";
+      package = pkgs.gnome.gnome-themes-extra;
     };
   };
+  # gtk = {
+  #   enable = true;
+  #   gtk3.extraConfig = {
+  #     gtk-application-prefer-dark-theme = 1;
+  #   };
 
-  xdg.desktopEntries.Alacritty = {
-    type = "Application";
-    exec = "env WAYLAND_DISPLAY= alacritty";
-    icon = "Alacritty";
-    terminal = false;
-    categories = ["System" "TerminalEmulator"];
-    name = "Alacritty";
-    genericName = "Alacritty";
-    comment = "A fast, cross-platform, OpenGL terminal emulator";
-    startupNotify = true;
-    actions = {
-      "New" = {
-        name = "New Terminal";
-        exec = "env WAYLAND_DISPLAY= alacritty";
+  #   gtk4.extraConfig = {
+  #     gtk-application-prefer-dark-theme = 1;
+  #   };
+  #   theme = {
+  #     name = "Catppuccin-Mocha-Standard-Sky-Dark";
+  #     package = (pkgs.catppuccin-gtk.override {
+  #         accents = [ "sky" ]; # You can specify multiple accents here to output multiple themes
+  #         size = "standard";
+  #         tweaks = [ "normal" ]; # You can also specify multiple tweaks here
+  #         variant = "mocha";
+  #     });
+  #   };
+  # };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "Adwaita-dark";
+    style = {
+      name = "Adwaita-dark";
+      package = pkgs.adwaita-qt;
+    };
+  };
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      configPackages = with pkgs; [ xdg-desktop-portal-gtk ];
+    };
+    desktopEntries.Alacritty = {
+      type = "Application";
+      exec = "env WAYLAND_DISPLAY= alacritty";
+      icon = "Alacritty";
+      terminal = false;
+      categories = ["System" "TerminalEmulator"];
+      name = "Alacritty";
+      genericName = "Alacritty";
+      comment = "A fast, cross-platform, OpenGL terminal emulator";
+      startupNotify = true;
+      actions = {
+        "New" = {
+          name = "New Terminal";
+          exec = "env WAYLAND_DISPLAY= alacritty";
+        };
       };
     };
   };
@@ -196,7 +218,8 @@
       };
 
       "org/gnome/desktop/interface" = {
-        gtk-theme = "Catppuccin-Mocha-Standard-Sky-Dark";
+     	  gtk-theme = "Adwaita-dark";
+        # gtk-theme = "Catppuccin-Mocha-Standard-Sky-Dark";
         color-scheme = "prefer-dark";
         cursor-theme = "Adwaita";
         enable-hot-corners = false;
