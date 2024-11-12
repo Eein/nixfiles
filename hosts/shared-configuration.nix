@@ -153,6 +153,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
+    pkgs.nodejs_22
+    pkgs.nodePackages.pnpm
+    pkgs.typescript
+
     pkgs.cloudflare-warp
     pkgs.gnomeExtensions.cloudflare-warp-toggle
     pkgs.vim 
