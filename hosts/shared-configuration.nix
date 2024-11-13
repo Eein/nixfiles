@@ -123,7 +123,7 @@
   };
 
   # 32 bit vulkan drivers
-  hardware.opengl.driSupport32Bit = true; 
+  hardware.graphics.enable32Bit = true;
 
   hardware.pulseaudio.enable = false;
   # Enable sound with pipewire.
