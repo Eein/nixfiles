@@ -16,7 +16,7 @@
 
   # Nix
   nix = {
-    package = pkgs.nixVersions.stable;
+    package = pkgs.lix;
     settings.trusted-users = [ "root" "@wheel" ];
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -152,6 +152,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
+    (pkgs.elixir.overrideAttrs {
+      minimumOTPVersion = "27";
+    })
+    pkgs.next-ls
+
     pkgs.nodejs_22
     pkgs.nodePackages.pnpm
     pkgs.typescript
@@ -243,5 +248,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
