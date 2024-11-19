@@ -20,15 +20,15 @@ let
     };
   };
 
-  outputpanel = pkgs.vimUtils.buildVimPlugin {
-    name = "output-panel.nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "mhanberg";
-      repo = "output-panel.nvim";
-      rev = "65bb44a5d5dbd40f3793a8c591b65a0c5f260bd9";
-      hash = "sha256-Gm03u8PidPQ/cNkl6K5rynZiux12lqgv0E5RXItw8nI=";
-    };
-  };
+  # outputpanel = pkgs.vimUtils.buildVimPlugin {
+  #   name = "output-panel.nvim";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "mhanberg";
+  #     repo = "output-panel.nvim";
+  #     rev = "65bb44a5d5dbd40f3793a8c591b65a0c5f260bd9";
+  #     hash = "sha256-Gm03u8PidPQ/cNkl6K5rynZiux12lqgv0E5RXItw8nI=";
+  #   };
+  # };
 
   tslime = pkgs.vimUtils.buildVimPlugin {
     name = "tslime-vim";
@@ -46,8 +46,8 @@ in
     defaultEditor = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
-      outputpanel
-      elixir-tools-nvim
+      # outputpanel
+      # elixir-tools-nvim
       vim-abolish
       rustaceanvim
       nvim-treesitter.withAllGrammars
@@ -79,7 +79,6 @@ in
       gitsigns-nvim
       fzf-vim
       zig-vim
-      typescript-tools-nvim
     ];
     extraPackages = with pkgs;
     [
@@ -271,33 +270,31 @@ in
         capabilities = capabilities
       }
 
-      require("typescript-tools").setup {
-      }
+      -- local elixir = require("elixir")
+      -- local elixirls = require("elixir.elixirls")
 
-      local elixir = require("elixir")
-
-      elixir.setup {
-        nextls = {
-          enable = false, -- defaults to false
-          # port = 9000, -- connect via TCP with the given port. mutually exclusive with `cmd`. defaults to nil
-          # cmd = "path/to/next-ls", -- path to the executable. mutually exclusive with `port`
-          init_options = {
-            mix_env = "dev",
-            mix_target = "host",
-            experimental = {
-              completions = {
-                enable = false -- control if completions are enabled. defaults to false
-              }
-            }
-          },
-          on_attach = function(client, bufnr)
-            -- custom keybinds
-          end
-        },
-        elixirls = {
-          enable = false
-        }
-      }
+      -- require("elixir").setup({
+      --   nextls = {
+      --   enable = true,
+      --    init_options = {
+      --       experimental = {
+      --         completions = {
+      --           enable = true,
+      --         }
+      --       }
+      --     },
+      --   },
+      --   elixirls = {
+      --      enable = false,
+      --      settings = elixirls.settings {
+      --       dialyzerEnabled = true,
+      --       fetchDeps = false,
+      --       enableTestLenses = false,
+      --       suggestSpecs = true,
+      --     },
+      --   },
+      --   projectionist = {enable = false},
+      -- })
 
       -- Map LSP keybindings
       -- vim.api.nvim_set_keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)

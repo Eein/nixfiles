@@ -152,11 +152,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
-    (pkgs.elixir.overrideAttrs {
-      minimumOTPVersion = "27";
-    })
-    pkgs.next-ls
-
+    pkgs.elixir
     pkgs.nodejs_22
     pkgs.nodePackages.pnpm
     pkgs.typescript
