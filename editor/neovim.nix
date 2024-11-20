@@ -264,7 +264,7 @@ in
         }
       })
 
-      require('lspconfig')['astro'].setup({})
+      -- require('lspconfig')['astro'].setup({})
       require('lspconfig')['zls'].setup({})
       require('lspconfig')['nil_ls'].setup {
         capabilities = capabilities
