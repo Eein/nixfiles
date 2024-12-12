@@ -79,7 +79,6 @@ in
       gitsigns-nvim
       fzf-vim
       zig-vim
-      typescript-tools-nvim
     ];
     extraPackages = with pkgs;
     [
@@ -253,32 +252,49 @@ in
         }
       }
 
-      require('lspconfig')['astro'].setup({})
+      require("lspconfig")["nextls"].setup({
+        cmd = {"nextls", "--stdio"},
+        init_options = {
+          extensions = {
+            credo = { enable = true }
+          },
+          experimental = {
+            completions = { enable = true }
+          }
+        }
+      })
+
+      -- require('lspconfig')['astro'].setup({})
       require('lspconfig')['zls'].setup({})
       require('lspconfig')['nil_ls'].setup {
         capabilities = capabilities
       }
 
-      require("typescript-tools").setup {
-      }
+      -- local elixir = require("elixir")
+      -- local elixirls = require("elixir.elixirls")
 
-      -- if vim.fn.executable("/home/will/.local/bin/nextls") then
-      --   require("elixir").setup({
-      --     nextls = {
-      --       enable = true,
-      --       cmd = "/home/will/.local/bin/nextls",
-      --       init_options = {
-      --         experimental = {
-      --           completions = {
-      --             enable = true -- control if completions are enabled. defaults to false
-      --           }
+      -- require("elixir").setup({
+      --   nextls = {
+      --   enable = true,
+      --    init_options = {
+      --       experimental = {
+      --         completions = {
+      --           enable = true,
       --         }
-      --       },
+      --       }
       --     },
-      --     credo = {enable = true},
-      --     elixirls = {enable = false},
-      --   })
-      -- end
+      --   },
+      --   elixirls = {
+      --      enable = false,
+      --      settings = elixirls.settings {
+      --       dialyzerEnabled = true,
+      --       fetchDeps = false,
+      --       enableTestLenses = false,
+      --       suggestSpecs = true,
+      --     },
+      --   },
+      --   projectionist = {enable = false},
+      -- })
 
       -- Map LSP keybindings
       -- vim.api.nvim_set_keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)

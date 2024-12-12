@@ -3,12 +3,16 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixos-hardware, ... }: {
+  outputs = inputs@{ nixpkgs, lix-module, home-manager, nixos-hardware, ... }: {
     nixosConfigurations = {
       nanami = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -17,6 +21,7 @@
           ./hosts/nanami/hardware-configuration.nix
           ./hosts/shared-configuration.nix
           ./hosts/nanami/configuration.nix
+          lix-module.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -32,6 +37,7 @@
           ./hosts/shibusa/hardware-configuration.nix
           ./hosts/shared-configuration.nix
           ./hosts/shibusa/configuration.nix
+          lix-module.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
