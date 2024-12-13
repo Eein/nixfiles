@@ -47,7 +47,7 @@ in
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
       # outputpanel
-      # elixir-tools-nvim
+      elixir-tools-nvim
       vim-abolish
       rustaceanvim
       nvim-treesitter.withAllGrammars
@@ -251,18 +251,45 @@ in
           }
         }
       }
-
-      require("lspconfig")["nextls"].setup({
-        cmd = {"nextls", "--stdio"},
-        init_options = {
-          extensions = {
-            credo = { enable = true }
-          },
-          experimental = {
-            completions = { enable = true }
+      if vim.fn.executable('nextls') == 1 then
+        require("lspconfig")["nextls"].setup({
+          cmd = {"nextls", "--stdio"},
+          init_options = {
+            extensions = {
+              credo = { enable = true }
+            },
+            experimental = {
+              completions = { enable = true }
+            }
           }
-        }
-      })
+        })
+        local elixir = require("elixir")
+        local elixirls = require("elixir.elixirls")
+
+        require("elixir").setup({
+          nextls = {
+          enable = true,
+           init_options = {
+              experimental = {
+                completions = {
+                  enable = true,
+                }
+              }
+            },
+          },
+          elixirls = {
+             enable = false,
+             settings = elixirls.settings {
+              dialyzerEnabled = true,
+              fetchDeps = false,
+              enableTestLenses = false,
+              suggestSpecs = true,
+            },
+          },
+          projectionist = {enable = false},
+        })
+      end
+
 
       -- require('lspconfig')['astro'].setup({})
       require('lspconfig')['zls'].setup({})
@@ -270,31 +297,6 @@ in
         capabilities = capabilities
       }
 
-      -- local elixir = require("elixir")
-      -- local elixirls = require("elixir.elixirls")
-
-      -- require("elixir").setup({
-      --   nextls = {
-      --   enable = true,
-      --    init_options = {
-      --       experimental = {
-      --         completions = {
-      --           enable = true,
-      --         }
-      --       }
-      --     },
-      --   },
-      --   elixirls = {
-      --      enable = false,
-      --      settings = elixirls.settings {
-      --       dialyzerEnabled = true,
-      --       fetchDeps = false,
-      --       enableTestLenses = false,
-      --       suggestSpecs = true,
-      --     },
-      --   },
-      --   projectionist = {enable = false},
-      -- })
 
       -- Map LSP keybindings
       -- vim.api.nvim_set_keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)

@@ -86,7 +86,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.tailscale.enable = true;
-  services.openssh.ports = [ 22 443 2222 7422 ];
+  services.openssh.ports = [ 22 443 ];
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -200,6 +200,11 @@
     enable = true;
   };
 
+  programs.direnv = {
+    enable = true;
+    silent = true;
+  };
+
   programs.steam.enable = true;
   fonts.fontconfig.enable = true;
   virtualisation.docker.enable = true; 
@@ -220,10 +225,10 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedTCPPorts = [ 2222 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
