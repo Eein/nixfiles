@@ -3,6 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,11 +15,12 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, lix-module, home-manager, nixos-hardware, ... }: {
+  outputs = inputs@{ nixpkgs, ghostty, lix-module, home-manager, nixos-hardware, ... }: {
     nixosConfigurations = {
       nanami = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ghostty.
           nixos-hardware.nixosModules.asus-zephyrus-ga401
           ./hosts/nanami/hardware-configuration.nix
           ./hosts/shared-configuration.nix
@@ -24,6 +28,9 @@
           lix-module.nixosModules.default
           home-manager.nixosModules.home-manager
           {
+            home-manager.extraSpecialArgs = {
+                inherit inputs;
+            };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
@@ -40,6 +47,9 @@
           lix-module.nixosModules.default
           home-manager.nixosModules.home-manager
           {
+            home-manager.extraSpecialArgs = {
+                inherit inputs;
+            };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, ghostty, ... }:
 
 {
   imports =
@@ -144,7 +144,6 @@
     pkgs.nodejs_22
     pkgs.nodePackages.pnpm
     pkgs.typescript
-
     pkgs.cloudflare-warp
     pkgs.gnomeExtensions.cloudflare-warp-toggle
     pkgs.vim 

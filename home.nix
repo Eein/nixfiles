@@ -1,5 +1,4 @@
 { config, inputs, pkgs, ... }:
-
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -96,6 +95,7 @@
   # programs.home-manager.enable = true;
 
   home.packages = [
+    inputs.ghostty.packages."${pkgs.system}".default
     pkgs.vesktop
     pkgs.docker-compose
     # Eventually move this to home-manager profiles
