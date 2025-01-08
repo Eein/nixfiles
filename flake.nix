@@ -20,7 +20,6 @@
       nanami = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ghostty.
           nixos-hardware.nixosModules.asus-zephyrus-ga401
           ./hosts/nanami/hardware-configuration.nix
           ./hosts/shared-configuration.nix
