@@ -138,7 +138,7 @@
     # Gnome Stuff
     pkgs.gnomeExtensions.user-themes
     pkgs.gnomeExtensions.cloudflare-warp-indicator
-    (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    pkgs.nerd-fonts.caskaydia-mono
   ];
 
   gtk = {

@@ -2,7 +2,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      font.normal.family = "CaskaydiaCove Nerd Font";
+      font.normal.family = "CaskaydiaMono Nerd Font";
       env = {
         "TERM" = "xterm-256color";
         "XCURSOR_THEME" = "Adwaita";

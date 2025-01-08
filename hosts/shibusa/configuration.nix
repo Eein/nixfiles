@@ -18,9 +18,7 @@
 
   programs.nix-ld.enable = true;
   environment.systemPackages = with pkgs; [
-    fflogs
     easyeffects
-    cdrdao
     via
     obs-studio
   ];

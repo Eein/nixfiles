@@ -125,7 +125,7 @@
   # 32 bit vulkan drivers
   hardware.graphics.enable32Bit = true;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   # Enable sound with pipewire.
   hardware.ckb-next.enable = true;
   services.pipewire = {
@@ -141,6 +141,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
+    pkgs.beam27Packages.elixir
     pkgs.nodejs_22
     pkgs.nodePackages.pnpm
     pkgs.typescript
@@ -150,20 +151,19 @@
     pkgs.wget
     pkgs.ckb-next
     pkgs.xwaylandvideobridge
-    pkgs.devenv
-    pkgs.dotnetCorePackages.dotnet_8.sdk
-    pkgs.dotnetCorePackages.dotnet_8.runtime
-    pkgs.dotnetCorePackages.dotnet_8.aspnetcore
-    pkgs.avalonia-ilspy
-    (pkgs.jetbrains.rider.overrideAttrs {
-      version = "2024.2.7";
-      src = builtins.fetchurl {
-        url = "https://download.jetbrains.com/rider/JetBrains.Rider-2024.2.7.tar.gz";
-        sha256 = "0hkypbxrrp0b4rffjawfr7flagyy1zvqzsnrq21bkvmjz6gs9pbi";
-      };
-      extraPkgs = [ pkgs.icu ];
-    })
-
+    # pkgs.devenv
+    # pkgs.dotnetCorePackages.dotnet_8.sdk
+    # pkgs.dotnetCorePackages.dotnet_8.runtime
+    # pkgs.dotnetCorePackages.dotnet_8.aspnetcore
+    # pkgs.avalonia-ilspy
+    # (pkgs.jetbrains.rider.overrideAttrs {
+    #   version = "2024.2.7";
+    #   src = builtins.fetchurl {
+    #     url = "https://download.jetbrains.com/rider/JetBrains.Rider-2024.2.7.tar.gz";
+    #     sha256 = "0hkypbxrrp0b4rffjawfr7flagyy1zvqzsnrq21bkvmjz6gs9pbi";
+    #   };
+    #   extraPkgs = [ pkgs.icu ];
+    # })
   ];
 
   environment.sessionVariables = {
