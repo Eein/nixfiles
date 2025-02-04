@@ -23,10 +23,6 @@
     '';
   };
 
-  systemd.services.ckb-next = {
-    enable = true;
-  };
-
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01"
   ];
@@ -155,46 +151,9 @@
     pkgs.dotnetCorePackages.dotnet_8.runtime
     pkgs.dotnetCorePackages.dotnet_8.aspnetcore
     pkgs.avalonia-ilspy
-    (pkgs.jetbrains.rider.overrideAttrs {
-      version = "2024.2.7";
-      src = builtins.fetchurl {
-        url = "https://download.jetbrains.com/rider/JetBrains.Rider-2024.2.7.tar.gz";
-        sha256 = "0hkypbxrrp0b4rffjawfr7flagyy1zvqzsnrq21bkvmjz6gs9pbi";
-      };
-      extraPkgs = [ pkgs.icu ];
-    })
-
   ];
 
-  environment.sessionVariables = {
-    DOTNET_ROOT = "${pkgs.dotnet-sdk}";
-  };
   # Exclude junk gnome packages we dont use
-  environment.gnome.excludePackages = with pkgs; [
-    baobab      # disk usage analyzer
-    cheese      # photo booth
-    eog         # image viewer
-    epiphany    # web browser
-    simple-scan # document scanner
-    totem       # video player
-    yelp        # help viewer
-    # evince      # document viewer
-    # file-roller # archive manager
-    geary       # email client
-    seahorse    # password manager
-
-    # these should be self explanatory
-    gnome-calendar 
-    gnome-characters 
-    gnome-clocks 
-    gnome-contacts
-    gnome-logs 
-    gnome-maps 
-    gnome-music 
-    gnome-weather 
-    pkgs.gnome-connections
-  ];
-
   programs.fish = {
     enable = true;
   };
@@ -204,21 +163,10 @@
     silent = true;
   };
 
-  programs.steam.enable = true;
-  fonts.fontconfig.enable = true;
-  virtualisation.docker.enable = true; 
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-     enable = true;
-     pinentryPackage = pkgs.pinentry-curses;
-     enableSSHSupport = true;
-  };
-
   # List services that you want to enable:
-  services.flatpak.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

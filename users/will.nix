@@ -1,8 +1,8 @@
 {pkgs, ...}:
 
 {
-  services.sshd.enable = true;
   users.groups.will = {};
+  services.sshd.enable = true;
   users.users.will = {
     isNormalUser = true;
     description = "will";
